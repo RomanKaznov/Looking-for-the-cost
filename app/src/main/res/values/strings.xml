@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Looking for the cost</string>
+    <string name="tag1">ЖКХ</string>
+    <string name="tag2">АРЕНДА</string>
+    <string name="tag3">КРЕДИТЫ</string>
+    <string name="tag4">ОБУЧЕНИЕ</string>
+    <string name="tag5">связь/интернет</string>
+    <string name="tag6">ТРАНСПОРТ</string>
+    <string name="tag7">МЕДИЦИНА</string>
+    <string name="tag8">ПИТАНИЕ</string>
+    <string name="tag10">ПОКУПКИ</string>
+    <string name="tag11">НАКОПЛЕНИЯ</string>
+</resources>
