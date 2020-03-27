@@ -1,4 +1,4 @@
-package com.example.lookingforthecost.screens.main;
+package com.example.lookingforthecost.screens.spending.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,11 +15,11 @@ import com.example.lookingforthecost.R;
 
 import com.example.lookingforthecost.database.model.Spending;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterListSpending extends RecyclerView.Adapter<AdapterListSpending.viewHolder> {
     private SortedList<Spending> sortedList;
-
 
     public AdapterListSpending() {
 
@@ -32,14 +32,16 @@ public class AdapterListSpending extends RecyclerView.Adapter<AdapterListSpendin
 
 
                 notifyItemRangeInserted(position, count);
+                notifyDataSetChanged();
             }
 
             @Override
             public void onRemoved(int position, int count) {
 
 
-                notifyItemRangeInserted(position, count);
+
                 notifyDataSetChanged();
+                notifyItemRangeInserted(position, count);
             }
 
             @Override
@@ -111,23 +113,27 @@ public class AdapterListSpending extends RecyclerView.Adapter<AdapterListSpendin
 
         void bind(Spending spending) {
             nameSpending.setText(spending.nameSpending);
-            spendMoney.setText(String.valueOf(spending.nameCategorySpending));
+            spendMoney.setText(String.valueOf(spending.spendMoney));
             this.spending = spending;
         }
+
 
     }
 
 
 
+
     void setItems(List<Spending> spendings) {
+
         sortedList.replaceAll(spendings);
+
     }
 
 
     @NonNull
     @Override
     public AdapterListSpending.viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.spending, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_spending, parent, false);
         return new AdapterListSpending.viewHolder(view);
     }
 

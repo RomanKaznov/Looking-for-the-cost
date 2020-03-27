@@ -1,4 +1,4 @@
-package com.example.lookingforthecost.screens.create_category;
+package com.example.lookingforthecost.screens.spending.create_caterory_and_spending;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -16,15 +17,18 @@ import com.example.lookingforthecost.database.model.Category;
 
 import java.util.ArrayList;
 
-public class CreateCategory extends AppCompatActivity implements View.OnClickListener {
+public class CreateCategoryActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText editText;
     Button add;
     TextView tag1, tag2, tag3, tag4, tag5, tag6, tag7, tag8, tag9, tag10, tag11;
+    CheckBox optional, necessary;
     ArrayList<Category> oldNames;
-    boolean checkRepeatCategory;
-    String NameCategory;
+    private boolean checkRepeatCategory;
+    private String NameCategory;
     private Category category;
+    private int weigt;
+    private boolean selectedStatus;
     private final String MESSEGE = "категория уже создана";
 
     @Override
@@ -34,6 +38,9 @@ public class CreateCategory extends AppCompatActivity implements View.OnClickLis
         editText = findViewById(R.id.input);
         add = findViewById(R.id.add);
         oldNames = new ArrayList<>();
+        optional = findViewById(R.id.optional);
+        necessary = findViewById(R.id.necessary);
+
         tag1 = findViewById(R.id.tag1);
         tag2 = findViewById(R.id.tag2);
         tag3 = findViewById(R.id.tag3);
@@ -59,15 +66,10 @@ public class CreateCategory extends AppCompatActivity implements View.OnClickLis
         tag11.setOnClickListener(this);
 
 
-
         new OldName().execute();
 
 
-
         category = new Category();
-
-
-
 
 
         editText.setOnClickListener(new View.OnClickListener() {
@@ -78,22 +80,12 @@ public class CreateCategory extends AppCompatActivity implements View.OnClickLis
         });
 
 
-
-
-
-
-
-
-
-
-
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //получаем значение поля
 
                 new OldName().execute();
-
                 NameCategory = String.valueOf(editText.getText());
                 //
 
@@ -101,35 +93,33 @@ public class CreateCategory extends AppCompatActivity implements View.OnClickLis
                 for (int i = 0; i < oldNames.size(); i++) {
 
 
-
-                    if(oldNames.get(i).nameCategory.equals(NameCategory)){
+                    if (oldNames.get(i).nameCategory.equals(NameCategory)) {
                         checkRepeatCategory = true;
                         break;
-                    }else {
+                    } else {
                         checkRepeatCategory = false;
                     }
-
-
 
 
                 }
 
 
-
                 Log.i("MESE", String.valueOf(checkRepeatCategory));
 
-                 if (editText.getText().length() > 0 && !checkRepeatCategory && !String.valueOf(editText.getText()).equals(MESSEGE)) {
+                if (editText.getText().length() > 0 && !checkRepeatCategory && !String.valueOf(editText.getText()).equals(MESSEGE)) {
+                    if (optional.isChecked()||necessary.isChecked()) {
                         category.nameCategory = NameCategory;
+                        category.amountSpending = 0;
+                        category.importance = weigt;
                         new addNameCategory().execute(category);
                         finish();
+                    }
 
+                } else if (editText.getText().length() == 0) {
 
-
-                }else if(editText.getText().length()==0){
-
-                }else {
-                     editText.setText(MESSEGE);
-                 }
+                } else {
+                    editText.setText(MESSEGE);
+                }
             }
         });
 
@@ -177,21 +167,37 @@ public class CreateCategory extends AppCompatActivity implements View.OnClickLis
     }
 
 
+    public void onCheckBoxListner(View view) {
+        switch (view.getId()) {
+            case R.id.necessary:
+                if (optional.isChecked()) {
+                    optional.setChecked(false);
+                }
+                weigt = 1;
+
+                break;
+            case R.id.optional:
+                if (necessary.isChecked()) {
+                    necessary.setChecked(false);
+                }
+                weigt = 0;
+
+                break;
+        }
+    }
 
 
+    static class addNameCategory extends AsyncTask<Category, Void, Void> {
 
-   static class addNameCategory extends AsyncTask<Category, Void, Void> {
 
+        @Override
+        protected Void doInBackground(Category... categories) {
+            // App.getInstance().getCategoryDao().nukeTable();
+            App.getInstance().getCategoryDao().insert(categories[0]);
 
-       @Override
-       protected Void doInBackground(Category... categories) {
-         // App.getInstance().getCategoryDao().nukeTable();
-           App.getInstance().getCategoryDao().insert(categories[0]);
-
-           return null;
-       }
-   }
-
+            return null;
+        }
+    }
 
 
     class OldName extends AsyncTask<Category, Void, ArrayList<Category>> {
@@ -200,7 +206,6 @@ public class CreateCategory extends AppCompatActivity implements View.OnClickLis
         @Override
         protected ArrayList<Category> doInBackground(Category... categories) {
             oldNames = (ArrayList<Category>) App.getInstance().getCategoryDao().getAll();
-
 
             return oldNames;
         }

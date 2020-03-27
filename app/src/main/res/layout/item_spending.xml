@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+         android:orientation="vertical"
+        android:layout_marginLeft="30dp"
+        android:layout_width="150dp"
+        android:layout_height="80dp">
+
+        <TextView
+            android:id="@+id/nameSpending"
+            android:text="sdsd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </TextView>
+
+    <TextView
+        android:layout_gravity="right|bottom"
+            android:id="@+id/spendMoney"
+            android:text="sdsd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </TextView>
+
+    </LinearLayout>
+
+
+

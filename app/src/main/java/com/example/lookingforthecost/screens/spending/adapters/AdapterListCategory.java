@@ -1,11 +1,10 @@
-package com.example.lookingforthecost.screens.main;
+package com.example.lookingforthecost.screens.spending.adapters;
 
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +23,7 @@ import com.example.lookingforthecost.App;
 import com.example.lookingforthecost.R;
 import com.example.lookingforthecost.database.model.Category;
 import com.example.lookingforthecost.database.model.Spending;
+import com.example.lookingforthecost.screens.spending.SpendingActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,13 +33,12 @@ public class AdapterListCategory extends RecyclerView.Adapter<AdapterListCategor
     private SortedList<Category> sortedList;
     private static MainViewModel mainViewModel;
     private Context context;
-    static boolean checkClick;
-    Intent intent;
+    private Intent intent;
 
     public AdapterListCategory(Context context, MainViewModel mainViewModel, Intent intent) {
         this.intent = intent;
         this.context = context;
-        this.mainViewModel = mainViewModel;
+        AdapterListCategory.mainViewModel = mainViewModel;
 
         sortedList = new SortedList<Category>(Category.class, new SortedList.Callback<Category>() {
             @Override
@@ -102,22 +101,48 @@ public class AdapterListCategory extends RecyclerView.Adapter<AdapterListCategor
 
     class viewHolder extends RecyclerView.ViewHolder {
 
-        private TextView nameCategory;
+        private TextView nameCategory, i1;
         private Category category;
-        private Button button;
+        private Button delCategory;
+        private int sum = 0;
         final AdapterListSpending adapterListSpending;
         LinearLayout addSpending;
         RecyclerView recyclerView;
 
 
         //удаление категории и всех трат в ней
-        private class DelCategory extends AsyncTask<Category, Void, Void> {
+        private class DelCategory extends AsyncTask<Category, Void, List<Spending>> {
             @Override
-            protected Void doInBackground(Category... categories) {
+            protected List<Spending> doInBackground(Category... categories) {
 
                 App.getInstance().getSpendingDao().delFromName(categories[0].nameCategory);
                 App.getInstance().getCategoryDao().delete(categories[0]);
-                return null;
+
+                return App.getInstance().getSpendingDao().getAll();
+            }
+
+            @Override
+            protected void onPostExecute(List<Spending> spendings) {
+              /*  ArrayList<Spending> arrayList = new ArrayList<>();
+                for (int i = 0; i < spendings.size(); i++) {
+                    if (spendings.get(i).nameCategorySpending.equals(category.nameCategory)) {
+
+                        arrayList.add(spendings.get(i));
+                        sum += spendings.get(i).spendMoney;
+                    }
+
+                }
+                ArrayList<Spending> sp = new ArrayList<>();
+
+                adapterListSpending.setItems(sp);*
+                adapterListSpending.setItems(arrayList);*/
+
+              SpendingActivity spendingActivity = new SpendingActivity();
+
+
+
+
+                super.onPostExecute(spendings);
             }
         }
         //
@@ -125,8 +150,8 @@ public class AdapterListCategory extends RecyclerView.Adapter<AdapterListCategor
         public viewHolder(@NonNull final View itemView) {
             super(itemView);
 
-
-            button = itemView.findViewById(R.id.del);
+            i1 = itemView.findViewById(R.id.i1);
+            delCategory = itemView.findViewById(R.id.del);
             addSpending = itemView.findViewById(R.id.addSpending);
             recyclerView = itemView.findViewById(R.id.colectionSpending);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false);
@@ -138,18 +163,20 @@ public class AdapterListCategory extends RecyclerView.Adapter<AdapterListCategor
             mainViewModel.getSpendingLiveData().observe((LifecycleOwner) itemView.getContext(), new Observer<List<Spending>>() {
                 @Override
                 public void onChanged(List<Spending> spendings) {
+                    ArrayList<Spending> arrayList = new ArrayList<>();
 
-                    final ArrayList<Spending> arrayList = new ArrayList<>();
                     if (category != null) {
                         for (int i = 0; i < spendings.size(); i++) {
                             if (spendings.get(i).nameCategorySpending.equals(category.nameCategory)) {
+
                                 arrayList.add(spendings.get(i));
+                                sum += spendings.get(i).spendMoney;
                             }
                         }
 
                         adapterListSpending.setItems(arrayList);
-                        arrayList.removeAll(spendings);
                         adapterListSpending.notifyDataSetChanged();
+
                     }
                 }
             });
@@ -158,18 +185,20 @@ public class AdapterListCategory extends RecyclerView.Adapter<AdapterListCategor
             addSpending.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    MainActivity.start((Activity) itemView.getContext(), category.nameCategory);
+                    SpendingActivity.start((Activity) itemView.getContext(), category);
+                    adapterListSpending.notifyDataSetChanged();
                 }
             });
 
 
-            button.setOnClickListener(new View.OnClickListener() {
+            delCategory.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    adapterListSpending.notifyDataSetChanged();
                     new DelCategory().execute(category);
+                    SpendingActivity spendingActivity = new SpendingActivity();
+                    SpendingActivity.reloadActivity((Activity) itemView.getContext());
                     adapterListSpending.notifyDataSetChanged();
-                    Log.i("S", String.valueOf(checkClick));
+
                 }
             });
 
@@ -180,13 +209,16 @@ public class AdapterListCategory extends RecyclerView.Adapter<AdapterListCategor
 
         void bind(Category category) {
             nameCategory.setText(category.nameCategory);
+            i1.setText(String.valueOf(category.amountSpending));
             this.category = category;
         }
     }
     //
 
 
-    void setItems(List<Category> category) {
+
+
+    public void setItems(List<Category> category) {
         sortedList.replaceAll(category);
     }
 
@@ -194,7 +226,7 @@ public class AdapterListCategory extends RecyclerView.Adapter<AdapterListCategor
     @NonNull
     @Override
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.category, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_category, parent, false);
         return new viewHolder(view);
     }
 

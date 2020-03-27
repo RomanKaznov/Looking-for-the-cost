@@ -1,4 +1,4 @@
-package com.example.lookingforthecost.screens.main;
+package com.example.lookingforthecost.screens.spending.create_caterory_and_spending;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,10 +14,8 @@ import com.example.lookingforthecost.R;
 import com.example.lookingforthecost.database.model.Category;
 import com.example.lookingforthecost.database.model.Spending;
 
-import java.net.URISyntaxException;
-
-public class CreateSpending extends AppCompatActivity {
-    EditText input,input2;
+public class CreateSpendingActivity extends AppCompatActivity {
+    EditText input, input2;
     Button add;
     Spending spending;
 
@@ -26,7 +24,7 @@ public class CreateSpending extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_spending);
         spending = new Spending();
-        add= findViewById(R.id.add);
+        add = findViewById(R.id.add);
         input = findViewById(R.id.input);
         input2 = findViewById(R.id.input2);
 
@@ -35,27 +33,30 @@ public class CreateSpending extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent intent = getIntent();
-                String s = intent.getStringExtra("name");
-                String str = String.valueOf(input.getText());
-                String str2 = String.valueOf(input2.getText());
-                spending.nameSpending = str;
-                spending.spendMoney = Integer.parseInt(str2);
-                spending.nameCategorySpending = s;
+                Category category = getIntent().getParcelableExtra("name");
+                String nameSpending = String.valueOf(input.getText());
+                String sumSpending = String.valueOf(input2.getText());
 
+
+
+                category.amountSpending = category.amountSpending + Integer.parseInt(sumSpending);
+                int x = category.importance;
+                category.importance = x;
+                spending.nameSpending = nameSpending;
+                spending.spendMoney = Integer.parseInt(sumSpending);
+                spending.nameCategorySpending = category.nameCategory;
+
+                new update().execute(category);
                 new addNameCategory().execute(spending);
                 finish();
 
             }
         });
 
-
-
-
-
-
     }
 
-    static class addNameCategory extends AsyncTask<Spending, Void, Void> {
+
+    private class addNameCategory extends AsyncTask<Spending, Void, Void> {
 
 
         @Override
@@ -64,8 +65,17 @@ public class CreateSpending extends AppCompatActivity {
             App.getInstance().getSpendingDao().insert(spendings[0]);
             return null;
         }
+
     }
 
 
+
+    private class update extends AsyncTask<Category, Void, Void> {
+        @Override
+        protected Void doInBackground(Category... categories) {
+            App.getInstance().getCategoryDao().update(categories[0]);
+            return null;
+        }
+    }
 
 }

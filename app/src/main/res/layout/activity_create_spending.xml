@@ -6,7 +6,17 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screens.main.CreateSpending">
+    tools:context=".screens.spending.create_caterory_and_spending.CreateSpendingActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="200dp">
+
 
     <EditText
         android:id="@+id/input"
@@ -15,6 +25,8 @@
     </EditText>
     <EditText
         android:id="@+id/input2"
+        android:inputType="number"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </EditText>
@@ -25,5 +37,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
     </Button>
+    </LinearLayout>
 
 </LinearLayout>

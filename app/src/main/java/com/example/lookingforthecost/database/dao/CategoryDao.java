@@ -1,4 +1,4 @@
-package com.example.lookingforthecost.database;
+package com.example.lookingforthecost.database.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;

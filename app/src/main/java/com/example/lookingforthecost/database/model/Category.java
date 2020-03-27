@@ -12,7 +12,7 @@ import java.util.Objects;
 
 
 @Entity
-public class Category  {
+public class Category implements Parcelable  {
 
     public Category() {
 
@@ -29,6 +29,9 @@ public class Category  {
     @ColumnInfo(name = "importance")
     public int importance;
 
+  @ColumnInfo(name = "amoutSpending")
+    public int  amountSpending;
+
 
    @Override
     public boolean equals(Object o) {
@@ -38,32 +41,57 @@ public class Category  {
         if (getClass() != o.getClass()) return false;
         if (id!=category.id) return false;
         if (nameCategory!=category.nameCategory) return  false;//
+        if (amountSpending!=category.amountSpending)return false;
        return nameCategory != null ? nameCategory.equals(category.nameCategory) : category.nameCategory == null;
     }
-
-
- /*   @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Note note = (Note) o;
-
-        if (uid != note.uid) return false;
-        if (timestamp != note.timestamp) return false;
-        if (done != note.done) return false;
-        return text != null ? text.equals(note.text) : note.text == null;
-    }*/
 
 
 
     @Override
     public int hashCode() {
         int result = id;
-
         return result;
+    }
+
+
+
+    protected Category(Parcel in) {
+        id = in.readInt();
+        nameCategory = in.readString();
+        amountSpending = in.readInt();
+        importance = in.readInt();
 
     }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(nameCategory);
+        dest.writeInt(amountSpending);
+        dest.writeInt(importance);
+
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Category> CREATOR = new Creator<Category>() {
+        @Override
+        public Category createFromParcel(Parcel in) {
+            return new Category(in);
+        }
+
+        @Override
+        public Category[] newArray(int size) {
+            return new Category[size];
+        }
+    };
+
+
+
+
 
 
 

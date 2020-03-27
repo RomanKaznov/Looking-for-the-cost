@@ -10,8 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".screens.main.CreateSpending"></activity>
-        <activity android:name=".screens.create_category.CreateCategory" />
+        <activity android:name=".create_plan"></activity>
+        <activity android:name=".MyPlan" />
         <activity android:name=".screens.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,6 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".screens.spending.create_caterory_and_spending.CreateSpendingActivity" />
+        <activity android:name=".screens.spending.create_caterory_and_spending.CreateCategoryActivity" />
+        <activity android:name=".screens.spending.SpendingActivity" />
     </application>
 
 </manifest>

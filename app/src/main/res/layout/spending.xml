@@ -1,31 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorAccen"
+    tools:context=".screens.spending.SpendingActivity">
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:background="@color/colorAccent"
-        android:gravity="center"
-         android:orientation="vertical"
-        android:layout_marginLeft="30dp"
-        android:layout_width="150dp"
-        android:layout_height="80dp">
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        >
 
-        <TextView
-            android:id="@+id/nameSpending"
-            android:text="sdsd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-        </TextView>
 
-    <TextView
-        android:layout_gravity="right|bottom"
-            android:id="@+id/spendMoney"
-            android:text="sdsd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-        </TextView>
+        <androidx.recyclerview.widget.RecyclerView
+
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            />
+
+
+
+
 
     </LinearLayout>
 
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:background="@color/colorAccen">
+        <TextView
+            android:id="@+id/addCategory"
+            android:text="Add"
+            android:textSize="30sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </TextView>
+    </LinearLayout>
+
+</LinearLayout>
