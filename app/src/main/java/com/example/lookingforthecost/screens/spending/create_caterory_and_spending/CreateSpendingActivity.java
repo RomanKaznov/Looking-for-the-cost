@@ -13,6 +13,8 @@ import com.example.lookingforthecost.App;
 import com.example.lookingforthecost.R;
 import com.example.lookingforthecost.database.model.Category;
 import com.example.lookingforthecost.database.model.Spending;
+import com.example.lookingforthecost.screens.main.MainActivity;
+import com.example.lookingforthecost.screens.spending.SpendingActivity;
 
 public class CreateSpendingActivity extends AppCompatActivity {
     EditText input, input2;
@@ -48,7 +50,9 @@ public class CreateSpendingActivity extends AppCompatActivity {
 
                 new update().execute(category);
                 new addNameCategory().execute(spending);
-                finish();
+
+                Intent intent2 = new Intent(getApplicationContext(),SpendingActivity.class);
+                startActivity(intent2);
 
             }
         });

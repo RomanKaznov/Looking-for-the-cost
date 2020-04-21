@@ -5,26 +5,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/category"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="300dp"
     android:layout_marginLeft="25dp"
     android:layout_marginTop="20dp"
     android:layout_marginRight="25dp"
     android:orientation="vertical">
+
     <TextView
+
         android:id="@+id/i1"
-        android:text="cvcvc"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </TextView>    <LinearLayout
+        android:layout_height="wrap_content"
+        android:text="cvcvc"></TextView>
+
+    <LinearLayout
+        android:layout_gravity="left"
         android:layout_width="120dp"
         android:layout_height="30dp"
-        android:background="@color/colorAccent"
+        android:background="@color/green3"
         android:gravity="center">
 
         <TextView
             android:id="@+id/nameCategory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             tools:text="sdsds"></TextView>
     </LinearLayout>
 
@@ -34,41 +38,38 @@
         android:layout_height="match_parent">
 
 
-
-    <Button
-        android:id="@+id/del"
-        android:layout_gravity="right"
-        android:text="del"
-        android:layout_width="40dp"
-        android:layout_height="40dp">
-    </Button>
-
-
+        <Button
+            android:id="@+id/del"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="right"
+            android:text="del"></Button>
 
 
         <LinearLayout
-
+            android:id="@+id/layoutRv"
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/border">
+            android:background="@drawable/background">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/colectionSpending"
-                android:orientation="horizontal"
-
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="30dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            </androidx.recyclerview.widget.RecyclerView>
+                android:orientation="horizontal"></androidx.recyclerview.widget.RecyclerView>
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/addSpending"
             android:layout_width="80dp"
             android:layout_height="35dp"
             android:layout_gravity="bottom|center"
             android:layout_marginBottom="20dp"
-            android:background="@color/colorPrimary"
+            android:background="@color/green"
             android:gravity="center">
 
             <TextView

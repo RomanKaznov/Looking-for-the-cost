@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".create_plan">
+    tools:context=".screens.plan.create_plan.CreatePlan">
 
     <LinearLayout
         android:gravity="center|bottom"
@@ -18,14 +18,13 @@
 
 
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
             android:layout_marginRight="100dp"
 
-            android:background="@color/colorPrimary"
+            android:background="@color/green"
             android:gravity="center">
 
             <TextView
@@ -41,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
-        android:background="@color/colorPrimary"
+        android:background="@color/green"
         android:orientation="vertical">
 
         <LinearLayout
@@ -57,7 +56,7 @@
                 android:gravity="center">
 
                 <EditText
-                    android:id="@+id/significant"
+                    android:id="@+id/nessarySpending"
                     android:inputType="number|numberDecimal"
                     android:hint="необходимые расходы"
                     android:layout_width="200dp"
@@ -80,7 +79,7 @@
                 android:gravity="center">
 
                 <EditText
-                    android:id="@+id/necessary"
+                    android:id="@+id/optionalSpending"
                     android:inputType="number|numberDecimal"
                     android:hint="незначительные расходы"
                     android:layout_width="200dp"

@@ -8,205 +8,137 @@
     tools:context=".screens.spending.create_caterory_and_spending.CreateCategoryActivity">
 
     <LinearLayout
-        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="100dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></EditText>
-        <LinearLayout
-            android:orientation="horizontal"
+        <EditText
+            android:id="@+id/input"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"></EditText>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:orientation="horizontal">
+
             <LinearLayout
-                android:gravity="left"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <androidx.appcompat.widget.AppCompatCheckBox
-                android:id="@+id/necessary"
-                android:onClick="onCheckBoxListner"
-                android:background="@color/colorPrimaryDark"
-                android:layout_gravity="left"
-                android:text="Необходимые траты"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-            </androidx.appcompat.widget.AppCompatCheckBox>
-            </LinearLayout>
-            <LinearLayout
-                android:gravity="right"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <androidx.appcompat.widget.AppCompatCheckBox
-                android:id="@+id/optional"
-                android:onClick="onCheckBoxListner"
-                android:text="Необязательные траты"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-            </androidx.appcompat.widget.AppCompatCheckBox>
+                android:gravity="left">
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/optionalSpending"
+                    android:onClick="onCheckBoxListner"
+                    style="@style/styleCheckBox"
+                    android:layout_gravity="left"
+                    android:background="@color/green"
+                    android:text="@string/nameCheckBox"></androidx.appcompat.widget.AppCompatCheckBox>
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+               >
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/optional"
+                    style="@style/styleCheckBox"
+                    android:layout_marginLeft="15dp"
+                    android:onClick="onCheckBoxListner"
+                    android:text="@string/nameCheckBox2"></androidx.appcompat.widget.AppCompatCheckBox>
+            </LinearLayout>
 
 
         </LinearLayout>
 
-    <Button
-        android:id="@+id/add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></Button>
+        <Button
+            android:id="@+id/add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></Button>
 
 
-    <LinearLayout
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <LinearLayout
+            style="@style/styleLayoutTag"
+   >
+
             <TextView
                 android:id="@+id/tag1"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
-                android:text="@string/tag1"
-                android:textSize="15sp">
-            </TextView>
-             <TextView
+                style="@style/styleTag"
+                android:text="@string/tag1"></TextView>
+
+            <TextView
                 android:id="@+id/tag2"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
-                android:text="@string/tag2"
-                android:textSize="15sp">
-            </TextView>
-             <TextView
+                style="@style/styleTag"
+                android:text="@string/tag2"></TextView>
+
+            <TextView
                 android:id="@+id/tag3"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
-                android:text="@string/tag3"
-                android:textSize="15sp">
-            </TextView>
+                style="@style/styleTag"
+                android:text="@string/tag3"></TextView>
+
             <TextView
                 android:id="@+id/tag4"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
-                android:text="@string/tag4"
-                android:textSize="15sp">
-            </TextView>
-    </LinearLayout>
+                style="@style/styleTag"
+                android:text="@string/tag4"></TextView>
+        </LinearLayout>
 
 
-    <LinearLayout
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <LinearLayout style="@style/styleLayoutTag">
+
             <TextView
                 android:id="@+id/tag5"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
+                style="@style/styleTag"
                 android:text="@string/tag5"
-                android:textSize="13sp">
-            </TextView>
-             <TextView
+                android:textSize="13sp"></TextView>
+
+            <TextView
                 android:id="@+id/tag6"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:layout_marginLeft="8dp"
+                style="@style/styleTag"
                 android:text="@string/tag6"
-                android:textSize="10sp"
-                 android:layout_marginStart="8dp">
-            </TextView>
-             <TextView
+                android:textSize="10sp"></TextView>
+
+            <TextView
                 android:id="@+id/tag7"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
+                style="@style/styleTag"
                 android:text="@string/tag7"
-                android:textSize="12sp">
-            </TextView>
+                android:textSize="12sp"></TextView>
+
             <TextView
                 android:id="@+id/tag8"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
+                style="@style/styleTag"
                 android:text="@string/tag8"
-                android:textSize="13sp">
-            </TextView>
-    </LinearLayout>
+                android:textSize="13sp"></TextView>
+        </LinearLayout>
 
-    <LinearLayout
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <LinearLayout style="@style/styleLayoutTag">
+
             <TextView
                 android:id="@+id/tag9"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
-                android:text="РАЗВЛЕЧЕНИЯ"
-                android:textSize="11sp">
-            </TextView>
-             <TextView
+                style="@style/styleTag"
+                android:text="@string/tag9"
+                android:textSize="11sp"></TextView>
+
+            <TextView
                 android:id="@+id/tag10"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:layout_marginLeft="8dp"
+                style="@style/styleTag"
                 android:text="@string/tag10"
-                android:textSize="14sp"
-                 android:layout_marginStart="8dp">
-            </TextView>
-             <TextView
+                android:textSize="14sp"></TextView>
+
+            <TextView
                 android:id="@+id/tag11"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
+                style="@style/styleTag"
                 android:text="@string/tag11"
-                android:textSize="12sp">
-            </TextView>
-    </LinearLayout>
-
-
+                android:textSize="12sp"></TextView>
+        </LinearLayout>
 
 
     </LinearLayout>

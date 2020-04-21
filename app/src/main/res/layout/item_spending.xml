@@ -1,31 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_gravity="center"
+    android:layout_width="150dp"
+    android:layout_height="80dp"
+    android:layout_marginLeft="30dp"
+    android:background="@drawable/background2"
+    android:orientation="vertical">
+
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:background="@color/colorAccent"
-        android:gravity="center"
-         android:orientation="vertical"
-        android:layout_marginLeft="30dp"
-        android:layout_width="150dp"
-        android:layout_height="80dp">
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
 
         <TextView
             android:id="@+id/nameSpending"
-            android:text="sdsd"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-        </TextView>
-
-    <TextView
-        android:layout_gravity="right|bottom"
-            android:id="@+id/spendMoney"
-            android:text="sdsd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-        </TextView>
-
+            android:layout_height="wrap_content"
+            android:text="имя траты"></TextView>
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="right|bottom">
+
+        <TextView
+
+            android:id="@+id/spendMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:text="сумма"></TextView>
+    </LinearLayout>
+</LinearLayout>
 
 
 

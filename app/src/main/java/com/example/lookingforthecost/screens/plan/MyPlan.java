@@ -1,4 +1,4 @@
-package com.example.lookingforthecost;
+package com.example.lookingforthecost.screens.plan;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,8 +9,11 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.lookingforthecost.App;
+import com.example.lookingforthecost.R;
 import com.example.lookingforthecost.database.model.Category;
 import com.example.lookingforthecost.database.model.FinPlan;
+import com.example.lookingforthecost.screens.plan.create_plan.CreatePlan;
 
 import java.util.List;
 
@@ -33,11 +36,11 @@ public class MyPlan extends AppCompatActivity {
 
         sumNecessary = findViewById(R.id.sumNecessary);
         necessaryBudget = findViewById(R.id.necessaryBudget);
-        remains1 = findViewById(R.id.remains1);
+        remains1 = findViewById(R.id.remainsNecessary);
 
         sumOptionalSpending = findViewById(R.id.sumOptionalSpending);
         optionalBudget = findViewById(R.id.optionalBudget);
-        remains2 = findViewById(R.id.remains2);
+        remains2 = findViewById(R.id.remainsOptional);
 
         planCreateStatus = findViewById(R.id.planCreate);
         planCreateNotStatus = findViewById(R.id.planNotCreate);
@@ -46,8 +49,8 @@ public class MyPlan extends AppCompatActivity {
 
 
 
-        final Intent intent = new Intent(this, create_plan.class);
-        final Intent intent2 = new Intent(this, create_plan.class);
+        final Intent intent = new Intent(this, CreatePlan.class);
+        final Intent intent2 = new Intent(this, CreatePlan.class);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

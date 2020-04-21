@@ -2,6 +2,7 @@ package com.example.lookingforthecost.screens.spending.create_caterory_and_spend
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import com.example.lookingforthecost.App;
 import com.example.lookingforthecost.R;
 import com.example.lookingforthecost.database.model.Category;
+import com.example.lookingforthecost.screens.spending.SpendingActivity;
 
 import java.util.ArrayList;
 
@@ -39,7 +41,7 @@ public class CreateCategoryActivity extends AppCompatActivity implements View.On
         add = findViewById(R.id.add);
         oldNames = new ArrayList<>();
         optional = findViewById(R.id.optional);
-        necessary = findViewById(R.id.necessary);
+        necessary = findViewById(R.id.optionalSpending);
 
         tag1 = findViewById(R.id.tag1);
         tag2 = findViewById(R.id.tag2);
@@ -112,7 +114,9 @@ public class CreateCategoryActivity extends AppCompatActivity implements View.On
                         category.amountSpending = 0;
                         category.importance = weigt;
                         new addNameCategory().execute(category);
-                        finish();
+
+                        Intent intent = new Intent(getApplicationContext(), SpendingActivity.class);
+                        startActivity(intent);;
                     }
 
                 } else if (editText.getText().length() == 0) {
@@ -169,7 +173,7 @@ public class CreateCategoryActivity extends AppCompatActivity implements View.On
 
     public void onCheckBoxListner(View view) {
         switch (view.getId()) {
-            case R.id.necessary:
+            case R.id.optionalSpending:
                 if (optional.isChecked()) {
                     optional.setChecked(false);
                 }

@@ -21,6 +21,7 @@ import com.example.lookingforthecost.screens.spending.adapters.MainViewModel;
 import com.example.lookingforthecost.screens.spending.create_caterory_and_spending.CreateCategoryActivity;
 import com.example.lookingforthecost.screens.spending.create_caterory_and_spending.CreateSpendingActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SpendingActivity extends AppCompatActivity {
@@ -28,7 +29,7 @@ public class SpendingActivity extends AppCompatActivity {
     TextView addCategory;
     private AdapterListCategory adapterListCategory;
     RecyclerView recyclerView;
-
+    ArrayList<Spending> arrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,14 +38,13 @@ public class SpendingActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.list);
         addCategory = findViewById(R.id.addCategory);
 
-
+        arrayList = new ArrayList<>();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
 
         Context context = new SpendingActivity().getBaseContext();
         Intent intent = new Intent(this, CreateSpendingActivity.class);
         MainViewModel mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-        Activity activity = new Activity();
 
         adapterListCategory = new AdapterListCategory(context, mainViewModel,intent);
 
@@ -60,7 +60,23 @@ public class SpendingActivity extends AppCompatActivity {
         });
 
 
+
+        mainViewModel.getSpendingLiveData().observe(this, new Observer<List<Spending>>() {
+            @Override
+            public void onChanged(List<Spending> spendings) {
+                adapterListCategory.setItemsAdapterSpending(spendings);
+            }
+        });
+
+
+
+
+
+
+
         final Intent intent2 = new Intent(this, CreateCategoryActivity.class);
+
+
         addCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,9 +86,20 @@ public class SpendingActivity extends AppCompatActivity {
     }
 
 
+
+
+
+
+
+
+
+
     public static void start(Activity caller, Category category) {
         Intent intent = new Intent(caller, CreateSpendingActivity.class);
         intent.putExtra("name", category);
+        caller.startActivity(intent);
+    }
+    public static void start(Activity caller, Intent intent) {
         caller.startActivity(intent);
     }
 
@@ -80,6 +107,22 @@ public class SpendingActivity extends AppCompatActivity {
         Intent intent = new Intent(caller, SpendingActivity.class);
         caller.finish();
         caller.startActivity(intent);
+    }
+
+
+
+    public ArrayList<Spending> ser(Category category,ArrayList<Spending> arr){
+
+        ArrayList<Spending> a = new ArrayList<>();
+        for (int i = 0; i < arr.size(); i++) {
+
+            if (arr.get(i).nameCategorySpending.equals(category.nameCategory)) {
+               a.add(arr.get(i));
+            }
+        }
+
+        return a;
+
     }
 
 

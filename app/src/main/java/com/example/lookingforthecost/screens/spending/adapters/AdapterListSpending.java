@@ -113,7 +113,7 @@ public class AdapterListSpending extends RecyclerView.Adapter<AdapterListSpendin
 
         void bind(Spending spending) {
             nameSpending.setText(spending.nameSpending);
-            spendMoney.setText(String.valueOf(spending.spendMoney));
+            spendMoney.setText(String.valueOf(getItemCount()));
             this.spending = spending;
         }
 
@@ -124,9 +124,7 @@ public class AdapterListSpending extends RecyclerView.Adapter<AdapterListSpendin
 
 
     void setItems(List<Spending> spendings) {
-
         sortedList.replaceAll(spendings);
-
     }
 
 

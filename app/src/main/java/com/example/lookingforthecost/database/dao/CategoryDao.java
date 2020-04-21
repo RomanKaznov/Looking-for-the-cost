@@ -25,6 +25,8 @@ public interface CategoryDao {
     @Query("SELECT * FROM category WHERE id IN (:userIds)")
     List<Category > loadAllByIds(int[] userIds);
 
+
+
     @Query("SELECT * FROM category WHERE id = :uid LIMIT 1")
     Category findByName(int uid);
 

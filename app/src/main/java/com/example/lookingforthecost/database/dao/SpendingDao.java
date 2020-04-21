@@ -25,6 +25,9 @@ public interface SpendingDao  {
     @Query( "SELECT * FROM spending WHERE id IN (:userIds)")
     List<Spending> loadAllByIds(int[] userIds);
 
+    @Query( "SELECT * FROM spending WHERE nameCategorySpending IN (:name)")
+    List<Spending> selectFromName(String name);
+
     @Query("SELECT * FROM spending WHERE id = :uid LIMIT 1")
     Spending findByName(int uid);
 

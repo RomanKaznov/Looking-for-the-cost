@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".OptionActivity">
+
+
+    <androidx.appcompat.widget.Toolbar
+        app:menu="@menu/main_menu"
+        android:id="@+id/toolbar"
+        style="@style/Toolbar"/>
+
+
+    <LinearLayout style="@style/LayoutOption">
+
+        <TextView
+            style="@style/headerOption"
+            android:text="Уведомления"></TextView>
+
+        <LinearLayout
+            style="@style/LayoutOption"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="Включить уведомления"></TextView>
+
+            <CheckBox
+                android:id="@+id/onNotification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:checked="true"></CheckBox>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout style="@style/LayoutOption">
+
+        <TextView
+            style="@style/headerOption"
+            android:text="Время уведомления"></TextView>
+
+        <LinearLayout
+            style="@style/LayoutOption"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/styleSpiner"
+                android:text="часов"></TextView>
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/hour"
+                style="@style/styleSpiner"
+                android:entries="@array/hour"></androidx.appcompat.widget.AppCompatSpinner>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/LayoutOption"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:orientation="horizontal">
+            <TextView
+                style="@style/styleSpiner"
+                android:text="минут"></TextView>
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/minute"
+                style="@style/styleSpiner"
+                android:entries="@array/minute"></androidx.appcompat.widget.AppCompatSpinner>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/LayoutOption">
+
+        <TextView
+            style="@style/headerOption"
+            android:text="Время уведомления"></TextView>
+
+        <LinearLayout
+            style="@style/LayoutOption"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/styleSpiner"
+                android:text="часов"></TextView>
+            <androidx.appcompat.widget.AppCompatSpinner
+                style="@style/styleSpiner"
+                android:entries="@array/hour"></androidx.appcompat.widget.AppCompatSpinner>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/LayoutOption"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:orientation="horizontal">
+            <TextView
+                style="@style/styleSpiner"
+                android:text="минут"></TextView>
+            <androidx.appcompat.widget.AppCompatSpinner
+                style="@style/styleSpiner"
+                android:entries="@array/minute"></androidx.appcompat.widget.AppCompatSpinner>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
