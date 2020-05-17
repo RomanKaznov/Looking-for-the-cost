@@ -1,25 +1,37 @@
-package com.example.lookingforthecost.screens.spending.create_caterory_and_spending;
+package com.example.lookingforthecost.screens.expenses.create_caterory_and_spending;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
+
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.lookingforthecost.App;
 import com.example.lookingforthecost.R;
 import com.example.lookingforthecost.database.model.Category;
-import com.example.lookingforthecost.screens.spending.SpendingActivity;
+import com.example.lookingforthecost.screens.expenses.SpendingActivity;
+
 
 import java.util.ArrayList;
 
+import static com.example.lookingforthecost.R.id.save;
+
 public class CreateCategoryActivity extends AppCompatActivity implements View.OnClickListener {
+
+    Category category;
 
     EditText editText;
     Button add;
@@ -28,20 +40,30 @@ public class CreateCategoryActivity extends AppCompatActivity implements View.On
     ArrayList<Category> oldNames;
     private boolean checkRepeatCategory;
     private String NameCategory;
-    private Category category;
+
     private int weigt;
-    private boolean selectedStatus;
-    private final String MESSEGE = "категория уже создана";
+    private final String MESSAGE = "категория уже создана";
+    private final String MESSAGE2 = "Введите имя категории";
+    private final String MESSAGE3 = "Выберите,насколько важные расходы будут содержаться в категории";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_category);
+        createToolbarCreateCategory();
+
         editText = findViewById(R.id.input);
-        add = findViewById(R.id.add);
+
         oldNames = new ArrayList<>();
+
+        category = new Category();
+
         optional = findViewById(R.id.optional);
         necessary = findViewById(R.id.optionalSpending);
+
+
+        new checkOldName().execute();//запустим поток,получим массив имен существующих категорий,и при создании новой проверим на повторение
 
         tag1 = findViewById(R.id.tag1);
         tag2 = findViewById(R.id.tag2);
@@ -68,12 +90,6 @@ public class CreateCategoryActivity extends AppCompatActivity implements View.On
         tag11.setOnClickListener(this);
 
 
-        new OldName().execute();
-
-
-        category = new Category();
-
-
         editText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,52 +98,10 @@ public class CreateCategoryActivity extends AppCompatActivity implements View.On
         });
 
 
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //получаем значение поля
-
-                new OldName().execute();
-                NameCategory = String.valueOf(editText.getText());
-                //
-
-
-                for (int i = 0; i < oldNames.size(); i++) {
-
-
-                    if (oldNames.get(i).nameCategory.equals(NameCategory)) {
-                        checkRepeatCategory = true;
-                        break;
-                    } else {
-                        checkRepeatCategory = false;
-                    }
-
-
-                }
-
-
-                Log.i("MESE", String.valueOf(checkRepeatCategory));
-
-                if (editText.getText().length() > 0 && !checkRepeatCategory && !String.valueOf(editText.getText()).equals(MESSEGE)) {
-                    if (optional.isChecked()||necessary.isChecked()) {
-                        category.nameCategory = NameCategory;
-                        category.amountSpending = 0;
-                        category.importance = weigt;
-                        new addNameCategory().execute(category);
-
-                        Intent intent = new Intent(getApplicationContext(), SpendingActivity.class);
-                        startActivity(intent);;
-                    }
-
-                } else if (editText.getText().length() == 0) {
-
-                } else {
-                    editText.setText(MESSEGE);
-                }
-            }
-        });
 
     }
+
+
 
     @Override
     public void onClick(View view) {
@@ -171,29 +145,102 @@ public class CreateCategoryActivity extends AppCompatActivity implements View.On
     }
 
 
-    public void onCheckBoxListner(View view) {
+    public void onCheckBoxListener(View view) {
         switch (view.getId()) {
             case R.id.optionalSpending:
                 if (optional.isChecked()) {
                     optional.setChecked(false);
                 }
                 weigt = 1;
-
                 break;
             case R.id.optional:
                 if (necessary.isChecked()) {
                     necessary.setChecked(false);
                 }
                 weigt = 0;
-
                 break;
         }
+
     }
 
 
-    static class addNameCategory extends AsyncTask<Category, Void, Void> {
+    private void showMessage(String MESSAGE) {
+        Toast toast = Toast.makeText(getApplicationContext(),
+                MESSAGE, Toast.LENGTH_SHORT);
+        toast.show();
+
+    }
 
 
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_create_category, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == save) {
+            new checkOldName().execute();
+            NameCategory = String.valueOf(editText.getText());
+            //
+            //проверяем на повторение
+            for (int i = 0; i < oldNames.size(); i++) {
+                if (oldNames.get(i).nameCategory.equals(NameCategory)) {
+                    checkRepeatCategory = true;
+                    break;
+                } else {
+                    checkRepeatCategory = false;
+                }
+            }
+            //
+
+            if (editText.getText().length() > 0 && !checkRepeatCategory) {
+                if (optional.isChecked() || necessary.isChecked()) {
+                    category.nameCategory = NameCategory;
+                    category.amountSpending = 0;
+                    category.importance = weigt;
+                    new addCategory().execute(category);
+                    Intent intent = new Intent(getApplicationContext(), SpendingActivity.class);
+                    startActivity(intent);
+                } else {
+                    showMessage(MESSAGE3);
+                }
+
+            } else if (editText.getText().length() == 0) {
+                showMessage(MESSAGE2);
+            } else {
+                showMessage(MESSAGE);
+            }
+
+        }
+        return true;
+    }
+
+
+
+    private void createToolbarCreateCategory() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setTitle("Новая категория");
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+    }
+
+
+    static class addCategory extends AsyncTask<Category, Void, Void> {
         @Override
         protected Void doInBackground(Category... categories) {
             // App.getInstance().getCategoryDao().nukeTable();
@@ -204,23 +251,18 @@ public class CreateCategoryActivity extends AppCompatActivity implements View.On
     }
 
 
-    class OldName extends AsyncTask<Category, Void, ArrayList<Category>> {
+    class checkOldName extends AsyncTask<Category, Void, ArrayList<Category>> {
 
 
         @Override
         protected ArrayList<Category> doInBackground(Category... categories) {
             oldNames = (ArrayList<Category>) App.getInstance().getCategoryDao().getAll();
-
             return oldNames;
         }
 
         @Override
         protected void onPostExecute(ArrayList<Category> categories) {
-
-
             super.onPostExecute(categories);
-
-
         }
     }
 

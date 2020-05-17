@@ -58,7 +58,7 @@
                         android:text="@string/nameVariable"></TextView>
 
                     <TextView
-                        android:id="@+id/necessaryBudget"
+                        android:id="@+id/optionalBudget"
                         style="@style/value"
                         android:text="@string/value"></TextView>
 
@@ -76,7 +76,7 @@
                         android:text="@string/nameVariable2"></TextView>
 
                     <TextView
-                        android:id="@+id/remainsNecessary"
+                        android:id="@+id/remainsOptional"
                         style="@style/value"
                         android:text="@string/value"></TextView>
                 </LinearLayout>
@@ -106,7 +106,7 @@
                         android:textColor="@color/textButton2"></TextView>
 
                     <TextView
-                        android:id="@+id/optionalBudget"
+                        android:id="@+id/NecassaryBudget"
                         style="@style/value"
                         android:text="@string/value"
                         android:textColor="@color/textButton2"></TextView>
@@ -125,7 +125,7 @@
                         android:textColor="@color/textButton2"></TextView>
 
                     <TextView
-                        android:id="@+id/remainsOptional"
+                        android:id="@+id/remainsNecassary"
                         style="@style/value"
                         android:text="@string/value"
                         android:textColor="@color/textButton2"></TextView>

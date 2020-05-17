@@ -6,151 +6,102 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".screens.plan.create_plan.CreatePlan">
+    tools:context=".screens.main.MyPlan">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/Toolbar"
+        app:menu="@menu/save_option" />
+
 
     <LinearLayout
-        android:gravity="center|bottom"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/colorAccent"
-        android:orientation="vertical">
+        style="@style/styleLayoutBudget"
+        android:background="@color/colorNecassary">
 
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:layout_marginRight="100dp"
-
-            android:background="@color/green"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="план"
-                android:textSize="25dp"></TextView>
-        </LinearLayout>
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:background="@color/green"
-        android:orientation="vertical">
+            android:layout_gravity="left"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Бюджет на обязательные расходы"></TextView>
 
         <LinearLayout
+            android:gravity="left|center"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="5"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <EditText
-                    android:id="@+id/nessarySpending"
-                    android:inputType="number|numberDecimal"
-                    android:hint="необходимые расходы"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"></EditText>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="руб"
-                    android:textSize="20sp"></TextView>
-            </LinearLayout>
-
-
-            <LinearLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <EditText
-                    android:id="@+id/optionalSpending"
-                    android:inputType="number|numberDecimal"
-                    android:hint="незначительные расходы"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"></EditText>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="руб"
-                    android:textSize="20sp"></TextView>
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginLeft="100dp"
-            android:layout_marginRight="100dp"
-            android:layout_weight="1"
-            android:background="@color/backgroundCategory"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Подведение итога"
-                android:textSize="18sp"></TextView>
-        </LinearLayout>
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/backgroundCategory"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="5"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_height="match_parent">
 
             <EditText
-                android:id="@+id/result"
-                android:hint="подведение"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:inputType="number|numberDecimal"
-                android:layout_gravity="center"></EditText>
-
+                android:id="@+id/nessarySpending"
+                style="@style/styleInputBudget"
+                android:background="@drawable/background2"></EditText>
             <TextView
+                android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text=" руб.">
+            </TextView>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/styleLayoutBudget"
+        android:background="@color/colorOtional">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Бюджет на обязательные расходы"></TextView>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="left|center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/optionalSpending"
+                style="@style/styleInputBudget"
+                android:background="@drawable/background2"
+               ></EditText>
+            <TextView
                 android:layout_marginLeft="10dp"
-                android:text="дни"
-                android:textSize="20sp"></TextView>
-            <Button
-                android:id="@+id/go"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-            </Button>
+                android:layout_height="wrap_content"
+                android:text=" руб."></TextView>
         </LinearLayout>
 
-
     </LinearLayout>
+
+    <LinearLayout
+        style="@style/styleLayoutBudget"
+        android:background="@color/green1">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="На какое количество дней расчитан план:"></TextView>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="left|center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <EditText
+                android:id="@+id/result"
+                style="@style/styleInputBudget"></EditText>
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="дни"></TextView>
+
+        </LinearLayout>
+    </LinearLayout>
+
 </LinearLayout>

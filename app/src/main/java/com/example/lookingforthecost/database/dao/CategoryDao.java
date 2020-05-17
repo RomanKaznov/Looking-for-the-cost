@@ -31,6 +31,10 @@ public interface CategoryDao {
     Category findByName(int uid);
 
 
+    @Query("SELECT * FROM category WHERE importance = :importance ")
+    LiveData<List<Category>> findByImportance(int importance);
+
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Category  category);
 

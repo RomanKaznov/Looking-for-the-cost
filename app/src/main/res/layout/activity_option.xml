@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,10 +12,9 @@
 
 
     <androidx.appcompat.widget.Toolbar
-        app:menu="@menu/main_menu"
+        app:menu="@menu/save_option"
         android:id="@+id/toolbar"
         style="@style/Toolbar"/>
-
 
     <LinearLayout style="@style/LayoutOption">
 
@@ -79,40 +80,7 @@
 
     </LinearLayout>
 
-    <LinearLayout style="@style/LayoutOption">
 
-        <TextView
-            style="@style/headerOption"
-            android:text="Время уведомления"></TextView>
-
-        <LinearLayout
-            style="@style/LayoutOption"
-            android:layout_marginTop="20dp"
-            android:gravity="left"
-            android:orientation="horizontal">
-
-            <TextView
-                style="@style/styleSpiner"
-                android:text="часов"></TextView>
-            <androidx.appcompat.widget.AppCompatSpinner
-                style="@style/styleSpiner"
-                android:entries="@array/hour"></androidx.appcompat.widget.AppCompatSpinner>
-        </LinearLayout>
-
-        <LinearLayout
-            style="@style/LayoutOption"
-            android:layout_marginTop="20dp"
-            android:gravity="left"
-            android:orientation="horizontal">
-            <TextView
-                style="@style/styleSpiner"
-                android:text="минут"></TextView>
-            <androidx.appcompat.widget.AppCompatSpinner
-                style="@style/styleSpiner"
-                android:entries="@array/minute"></androidx.appcompat.widget.AppCompatSpinner>
-        </LinearLayout>
-
-    </LinearLayout>
 
 
 </LinearLayout>

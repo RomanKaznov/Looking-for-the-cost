@@ -9,7 +9,6 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.lookingforthecost.database.model.FinPlan;
-import com.example.lookingforthecost.database.model.Spending;
 
 import java.util.List;
 
@@ -17,7 +16,8 @@ import java.util.List;
 public interface FinPlanDao {
 
     @Query("SELECT * FROM finplan")
-    LiveData<List<FinPlan>> getAllLiveData();
+    LiveData<List<FinPlan>> getFinPlan();
+
 
     @Query("SELECT * FROM finplan")
     List<FinPlan> getAll();
@@ -40,7 +40,8 @@ public interface FinPlanDao {
     @Delete
     void delete(FinPlan finPlan);
 
-
+    @Query("DELETE FROM finplan")
+    public void nukeTable();
 
 
 

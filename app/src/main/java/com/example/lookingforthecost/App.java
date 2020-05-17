@@ -7,15 +7,14 @@ import androidx.room.Room;
 import com.example.lookingforthecost.database.AppDataBase;
 import com.example.lookingforthecost.database.dao.CategoryDao;
 import com.example.lookingforthecost.database.dao.DateNotificationDao;
+import com.example.lookingforthecost.database.dao.ExpensesDao;
 import com.example.lookingforthecost.database.dao.FinPlanDao;
-import com.example.lookingforthecost.database.dao.SpendingDao;
-import com.example.lookingforthecost.database.model.FinPlan;
 
 public class App extends Application {
     private AppDataBase dataBase;
     private CategoryDao categoryDao;
     private DateNotificationDao dateNotificationDao;
-    private SpendingDao spendingDao;
+    private ExpensesDao expensesDao;
     private FinPlanDao finPlan;
     public static App instance;
 
@@ -35,7 +34,7 @@ public class App extends Application {
                 .build();
         categoryDao = dataBase.categoryDao();
         dateNotificationDao = dataBase.dateNotificationDao();
-        spendingDao = dataBase.spendingDao();
+        expensesDao = dataBase.spendingDao();
         finPlan = dataBase.finPlanDao();
 
     }
@@ -57,8 +56,8 @@ public class App extends Application {
         return dateNotificationDao;
     }
 
-    public SpendingDao getSpendingDao() {
-        return spendingDao;
+    public ExpensesDao getExpensesDao() {
+        return expensesDao;
     }
 
     public FinPlanDao getFinPlanDao() {

@@ -1,14 +1,10 @@
 package com.example.lookingforthecost.screens.main;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import android.annotation.SuppressLint;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,75 +15,113 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
-
-import com.example.lookingforthecost.App;
 import com.example.lookingforthecost.OptionActivity;
+import com.example.lookingforthecost.controler.ColorController;
 import com.example.lookingforthecost.database.model.Category;
 import com.example.lookingforthecost.database.model.FinPlan;
-import com.example.lookingforthecost.notification.NotificationMessage;
-import com.example.lookingforthecost.screens.plan.MyPlan;
 import com.example.lookingforthecost.R;
-import com.example.lookingforthecost.screens.plan.create_plan.CreatePlan;
-import com.example.lookingforthecost.screens.spending.SpendingActivity;
-import com.example.lookingforthecost.screens.spending.create_caterory_and_spending.CreateCategoryActivity;
+import com.example.lookingforthecost.notification.AlaramMeneger;
+import com.example.lookingforthecost.screens.expenses.view_model.MainViewModel;
+import com.example.lookingforthecost.screens.expenses.SpendingActivity;
 
-import java.util.Calendar;
 import java.util.List;
 
 import static com.example.lookingforthecost.R.id.option;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    Button myFinances, mySpendings;
-    TextView necessaryBudget, optionalBudget;
-    TextView remainsNecessary, remainsOptional;
+
+
+    ColorController colorController;
+    Button myFinances, myExpenses;
+    TextView optionalBudget, necassaryBudget;
+    TextView remainsOptional, remainsNecassary;
     Toolbar toolbar;
     FinPlan finPlan;
+    Context context;
+    AlaramMeneger alaramMeneger;
+
     public static String TAG_INTENT_PLAN = "PLAN";
 
-    private AlarmManager am;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        new Plan().execute();
+        alaramMeneger = new AlaramMeneger();
+        alaramMeneger.launchNotifications(getApplicationContext());
+        //alaramMeneger.startControlDay(getApplicationContext());
+        context = this;
+        colorController = new ColorController();
 
 
         toolbar = findViewById(R.id.toolbar);
-        ;
         setSupportActionBar(toolbar);
 
-        necessaryBudget = findViewById(R.id.necessaryBudget);
         optionalBudget = findViewById(R.id.optionalBudget);
-
-
-        remainsNecessary = findViewById(R.id.remainsNecessary);
         remainsOptional = findViewById(R.id.remainsOptional);
 
+        necassaryBudget = findViewById(R.id.NecassaryBudget);
+        remainsNecassary = findViewById(R.id.remainsNecassary);
 
-       /* Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 15);
-        calendar.set(Calendar.MINUTE, 12);
-        calendar.set(Calendar.SECOND, 0);
-        Intent intent = new Intent(this, NotificationMessage.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        am = (AlarmManager) getSystemService(ALARM_SERVICE);
-        am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-
-*/
         myFinances = findViewById(R.id.myFinances);
-        mySpendings = findViewById(R.id.mySpendings);
+        myExpenses = findViewById(R.id.mySpendings);
 
         myFinances.setOnClickListener(this);
-        mySpendings.setOnClickListener(this);
+        myExpenses.setOnClickListener(this);
+
+
+        final MainViewModel mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+//работа с планом
+        mainViewModel.getFinPlan().observe(this, new Observer<List<FinPlan>>() {//работа с планом
+            @Override
+            public void onChanged(List<FinPlan> finPlans) {//получим план
+                    finPlan = finPlans.get(0);//т.к он всегда один,запрашиваем по 0 индексу
+                    necassaryBudget.setText(String.valueOf(finPlan.necessaryBudget));//выведем обязательный бюджет
+                    optionalBudget.setText(String.valueOf(finPlan.optionalBudget));//выведем необязательный бюджет
+
+                    mainViewModel.getCategoryNecessaryExpenses().observe((LifecycleOwner) context, new Observer<List<Category>>() {//получаем категории с весом 1(необходимые расходы)
+                    @Override
+                    public void onChanged(final List<Category> categories) {
+                       int remains = getRemainsBudget(categories,finPlan.necessaryBudget);//метод возвращает остаток от бюджета
+                        remainsNecassary.setText(String.valueOf(remains));
+                        colorController.setColorTextView(remains,remainsNecassary);//метод выведет текст, если остаток окажется отрицательным,зададаст ему красный цвет
+                    }
+                });
+                    mainViewModel.getCategoryOptionalExpenses().observe((LifecycleOwner) context, new Observer<List<Category>>() {//получаем категории с весом 0(необязательные расходы)
+                        @Override
+                        public void onChanged(List<Category> categories) {
+                           int remains = getRemainsBudget(categories,finPlan.optionalBudget);
+                            remainsOptional.setText(String.valueOf(remains));
+                            colorController.setColorTextView(remains,remainsOptional);
+                        }
+                    });
+
+            }
+        });
+//
+
+
+
+
 
 
     }
+
+   private int getRemainsBudget(List<Category> categories, int budget) {
+        int sumExpenses = 0;
+        for (int i = 0; i < categories.size(); i++) {
+            sumExpenses += categories.get(i).amountSpending;//получим сумму расходов из всех категорий определенного веса
+        }
+        return budget - sumExpenses;
+    }
+
+
 
 
     @Override
@@ -111,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         Intent intent = new Intent(this, SpendingActivity.class);
-        Intent intent2 = new Intent(this, CreatePlan.class);
+        Intent intent2 = new Intent(this, MyPlan.class);
 
         if (finPlan != null)
             intent2.putExtra(TAG_INTENT_PLAN, finPlan);
@@ -128,58 +162,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
-
-
-    private class Plan extends AsyncTask<Void, Void, int[]> {
-
-
-        @Override
-        protected int[] doInBackground(Void... voids) {
-            List<FinPlan> finPlans = App.getInstance().getFinPlanDao().getAll();
-
-            int sumOptionalSpending = 0;
-            int sumNecessarySpending = 0;
-            int[] sum = new int[6];
-
-            if (finPlans.size() > 0) {
-                finPlan = finPlans.get(0);
-                List<Category> categories = App.getInstance().getCategoryDao().getAll();
-
-                if (categories.size() > 0) {
-                    for (int i = 0; i < categories.size(); i++) {
-                        if (categories.get(i).importance == 1) {//при создании категории указывается ее необходимость,если это категория необходимых расходов присваивается 1
-                            sumNecessarySpending += categories.get(i).amountSpending;
-                        } else if (categories.get(i).importance == 0) {// если категория необязательных расходов присваивается 0
-                            sumOptionalSpending += categories.get(i).amountSpending;
-                        }
-                    }
-                }
-
-
-                sum[0] = finPlans.get(0).necessaryBudget;//бюджет на необходимые затраты
-                sum[1] = sum[0] - sumNecessarySpending;//сумма необходимых расходов
-
-                sum[2] = finPlans.get(0).optionalBudget;//бюджет на необязательные расходы
-                sum[3] = sum[2] - sumOptionalSpending;//сума необязательных расходов
-
-            }
-
-
-            return sum;
-        }
-
-        @Override
-        protected void onPostExecute(int[] ints) {
-            necessaryBudget.setText(String.valueOf(ints[0]) + " р.");
-            remainsNecessary.setText(String.valueOf(ints[1]) + " р.");
-
-            optionalBudget.setText(String.valueOf(ints[2]) + " р.");
-            remainsOptional.setText(String.valueOf(ints[3]) + " р.");
-
-            super.onPostExecute(ints);
-        }
-
-    }
-
 
 }

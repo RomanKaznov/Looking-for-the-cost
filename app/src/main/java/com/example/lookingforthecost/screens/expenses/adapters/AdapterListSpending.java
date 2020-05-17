@@ -1,5 +1,6 @@
-package com.example.lookingforthecost.screens.spending.adapters;
+package com.example.lookingforthecost.screens.expenses.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,48 +14,36 @@ import androidx.recyclerview.widget.SortedList;
 
 import com.example.lookingforthecost.R;
 
-import com.example.lookingforthecost.database.model.Spending;
+import com.example.lookingforthecost.database.model.Expenses;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterListSpending extends RecyclerView.Adapter<AdapterListSpending.viewHolder> {
-    private SortedList<Spending> sortedList;
+    private SortedList<Expenses> sortedList;
+    private Context context;
 
-    public AdapterListSpending() {
-
-
-        sortedList = new SortedList<Spending>(Spending.class, new SortedList.Callback<Spending>() {
-
-
+    public AdapterListSpending(Context context) {
+        this.context = context;
+        sortedList = new SortedList<Expenses>(Expenses.class, new SortedList.Callback<Expenses>() {
             @Override
             public void onInserted(int position, int count) {
-
-
                 notifyItemRangeInserted(position, count);
                 notifyDataSetChanged();
             }
 
             @Override
             public void onRemoved(int position, int count) {
-
-
-
                 notifyDataSetChanged();
                 notifyItemRangeInserted(position, count);
             }
 
             @Override
             public void onMoved(int fromPosition, int toPosition) {
-
-
                 notifyItemMoved(fromPosition, toPosition);
             }
 
             @Override
-            public int compare(Spending o1, Spending o2) {
-
-
+            public int compare(Expenses o1, Expenses o2) {
                 int res = 0;
                 if (o1.id < o2.id) {
                     res = -1;
@@ -62,69 +51,50 @@ public class AdapterListSpending extends RecyclerView.Adapter<AdapterListSpendin
                 if (o1.id > o2.id) {
                     res = 1;
                 }
-
-
                 return res;
             }
 
 
             @Override
             public void onChanged(int position, int count) {
-
                 notifyItemRangeInserted(position, count);
-
             }
 
             @Override
-            public boolean areContentsTheSame(Spending oldItem, Spending newItem) {
-
-
+            public boolean areContentsTheSame(Expenses oldItem, Expenses newItem) {
                 return oldItem.equals(newItem);
             }
 
             @Override
-            public boolean areItemsTheSame(Spending item1, Spending item2) {
-
-
+            public boolean areItemsTheSame(Expenses item1, Expenses item2) {
                 return item1.id == item2.id;
             }
         });
     }
 
 
-
-
-
     class viewHolder extends RecyclerView.ViewHolder {
 
         private TextView nameSpending, spendMoney;
-        private Spending spending;
+        private Expenses expenses;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
-
-
             nameSpending = itemView.findViewById(R.id.nameSpending);
             spendMoney = itemView.findViewById(R.id.spendMoney);
-
-
         }
 
-
-        void bind(Spending spending) {
-            nameSpending.setText(spending.nameSpending);
-            spendMoney.setText(String.valueOf(getItemCount()));
-            this.spending = spending;
+        void bind(Expenses expenses) {
+            nameSpending.setText(expenses.nameSpending);
+            spendMoney.setText(String.valueOf(expenses.spendMoney) + " " + context.getString(R.string.currency));
+            this.expenses = expenses;
         }
-
 
     }
 
 
-
-
-    void setItems(List<Spending> spendings) {
-        sortedList.replaceAll(spendings);
+    void setItems(List<Expenses> expenses) {
+        sortedList.replaceAll(expenses);
     }
 
 

@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -28,17 +29,17 @@ public class NotificationMessage extends BroadcastReceiver {
     NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
     Intent ri = new Intent(context,MainActivity.class);
-    ri.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
     PendingIntent pendingIntent = PendingIntent.getActivity(context,100,ri,PendingIntent.FLAG_UPDATE_CURRENT);
 
-
-        NotificationCompat.Builder builder =
+   NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(context)
                         .setContentIntent(pendingIntent)
                         .setSmallIcon(R.drawable.ic_launcher_background)
                         .setContentTitle("Напоминание")
                         .setContentText("Пора покормить кота")
                         .setAutoCancel(true);
+
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
 
@@ -47,8 +48,6 @@ public class NotificationMessage extends BroadcastReceiver {
             NotificationChannel notificationChannel = new NotificationChannel("3260", channelName, importance);
             notificationChannel.enableLights(true);
             notificationChannel.setLightColor(Color.RED);
-            notificationChannel.enableVibration(true);
-            notificationChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
             nm.createNotificationChannel(notificationChannel);
             builder.setChannelId(notificationChannel.getId());
         }else {
@@ -57,8 +56,16 @@ public class NotificationMessage extends BroadcastReceiver {
 
 
 
-
         nm.notify(100,builder.build());
+
+
+      /*  AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        PendingIntent pendingInten = PendingIntent.getBroadcast(context, 0,
+                intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + AlarmManager.INTERVAL_DAY, pendingInten);*/
+
+
+       // Toast.makeText(context, "Alarm Triggered", Toast.LENGTH_LONG).show( );
 
 
 

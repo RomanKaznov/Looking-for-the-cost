@@ -8,6 +8,8 @@
     tools:context=".screens.expenses.create_caterory_and_spending.CreateCategoryActivity">
 
     <androidx.appcompat.widget.Toolbar
+        android:layout_weight="1"
+        android:layout_height="0dp"
         app:menu="@menu/menu_create_category"
         android:id="@+id/toolbar"
         style="@style/Toolbar"/>
@@ -16,8 +18,9 @@
 
 
     <LinearLayout
+        android:layout_weight="5"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="100dp"
         android:orientation="vertical">
@@ -55,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
-               >
+                >
 
                 <androidx.appcompat.widget.AppCompatCheckBox
                     android:id="@+id/optional"
@@ -69,10 +72,14 @@
         </LinearLayout>
 
 
-
+        <ScrollView
+            android:scrollbars="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
         <LinearLayout
+
             style="@style/styleLayoutTag"
-   >
+            >
 
             <TextView
                 android:id="@+id/tag1"
@@ -142,8 +149,9 @@
                 style="@style/styleTag"
                 android:text="@string/tag11"
                 android:textSize="12sp"></TextView>
-        </LinearLayout>
 
+        </LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
 

@@ -45,6 +45,13 @@
             android:layout_gravity="right"
             android:text="del"></Button>
 
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:textAlignment="center"
+            android:layout_gravity="right"
+            android:id="@+id/hour"
+            style="@style/styleSpiner"
+            android:entries="@array/hour"></androidx.appcompat.widget.AppCompatSpinner>
+
 
         <LinearLayout
             android:id="@+id/layoutRv"

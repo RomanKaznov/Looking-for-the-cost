@@ -6,15 +6,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/green"
-    tools:context=".screens.spending.SpendingActivity">
+    tools:context=".screens.expenses.SpendingActivity">
+
+
+    <androidx.appcompat.widget.Toolbar
+        app:menu="@menu/main_menu"
+        android:id="@+id/toolbar"
+        style="@style/Toolbar"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="6"
         >
-
-
         <androidx.recyclerview.widget.RecyclerView
 
             android:id="@+id/list"
@@ -22,11 +27,6 @@
             android:layout_height="match_parent"
 
             />
-
-
-
-
-
     </LinearLayout>
 
 

@@ -6,7 +6,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screens.spending.create_caterory_and_spending.CreateSpendingActivity">
+    tools:context=".screens.expenses.create_caterory_and_spending.CreateSpendingActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        app:menu="@menu/menu_create_category"
+        android:id="@+id/toolbar"
+        style="@style/Toolbar"/>
+
 
     <LinearLayout
         android:orientation="vertical"
