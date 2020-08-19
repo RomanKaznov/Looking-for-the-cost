@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/category"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:layout_marginLeft="125dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginRight="125dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/LayoutHorizontal"
+        android:layout_gravity="left"
+        android:layout_marginRight="200dp"
+        android:layout_weight="7">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/nameCategoryBack"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimaryLight" />
+
+            <TextView
+                android:id="@+id/nameCategory"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:text="Имя категории" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+
+    <FrameLayout
+        style="@style/LayoutVertical"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/layoutRvBack"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryLight" />
+
+        <LinearLayout
+            android:id="@+id/layoutRv"
+            style="@style/LayoutVertical"
+            android:gravity="center">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/spendingCollection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:orientation="horizontal" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/addSpending"
+            style="@style/LayoutHorizontal"
+            android:layout_gravity="bottom|center"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="200dp"
+            android:layout_marginRight="120dp"
+            android:layout_marginBottom="15dp"
+            android:text="+"
+            android:textSize="25sp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right">
+
+            <LinearLayout
+                style="@style/LayoutHorizontal"
+                android:layout_weight="1"
+                android:gravity="left">
+
+                <TextView
+                    android:id="@+id/sumCategory"
+                    style="@style/LayoutHorizontal"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="0 р."
+                    android:textSize="22sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/LayoutHorizontal"
+                android:layout_weight="1"
+                android:gravity="right">
+                <Button
+                    android:id="@+id/deleteCategory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:background="@color/colorDiaphanous"
+                    android:drawableRight="@drawable/del" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</LinearLayout>

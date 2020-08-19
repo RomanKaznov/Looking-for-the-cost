@@ -2,47 +2,51 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screens.expenses.create_caterory_and_spending.CreateSpendingActivity">
+    android:orientation="vertical"
+    tools:context=".screens.expenses.CreateExpensesActivity">
 
     <androidx.appcompat.widget.Toolbar
-        app:menu="@menu/menu_create_category"
         android:id="@+id/toolbar"
-        style="@style/Toolbar"/>
+        style="@style/Toolbar"
+        app:menu="@menu/menu_create_category" />
 
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        style="@style/LayoutVertical"
         android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
         android:layout_marginTop="100dp"
-        android:layout_marginBottom="200dp">
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="200dp"
+        android:background="@drawable/background">
 
+        <LinearLayout
+            style="@style/LayoutHorizontal"
+            android:layout_weight="1">
 
-    <EditText
-        android:id="@+id/input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </EditText>
-    <EditText
-        android:id="@+id/input2"
-        android:inputType="number"
+            <EditText
+                android:id="@+id/nameExpenses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="50dp"
+                android:hint="@string/inputTextExpenses" />
+        </LinearLayout>
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </EditText>
+        <LinearLayout
+            style="@style/LayoutHorizontal"
+            android:layout_weight="1">
 
+            <EditText
+                android:id="@+id/sumExpenses"
+                style="@style/sumValueInput"
+                android:layout_marginLeft="100dp"
+                android:hint="@string/inputNameExpenses" />
 
-    <Button
-        android:id="@+id/add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </Button>
+            <TextView
+                style="@style/mainCurrency"
+                android:text="@string/mainCurrency"></TextView>
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

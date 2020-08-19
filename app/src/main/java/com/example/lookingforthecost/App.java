@@ -2,67 +2,22 @@ package com.example.lookingforthecost;
 
 import android.app.Application;
 
-import androidx.room.Room;
-
-import com.example.lookingforthecost.database.AppDataBase;
-import com.example.lookingforthecost.database.dao.CategoryDao;
-import com.example.lookingforthecost.database.dao.DateNotificationDao;
-import com.example.lookingforthecost.database.dao.ExpensesDao;
-import com.example.lookingforthecost.database.dao.FinPlanDao;
+import com.example.lookingforthecost.database.di.components.AppComponent;
+import com.example.lookingforthecost.database.di.components.DaggerAppComponent;
+import com.example.lookingforthecost.database.di.module.DataBaseModule;
 
 public class App extends Application {
-    private AppDataBase dataBase;
-    private CategoryDao categoryDao;
-    private DateNotificationDao dateNotificationDao;
-    private ExpensesDao expensesDao;
-    private FinPlanDao finPlan;
-    public static App instance;
 
-
-    public static App getInstance() {
-
-        return instance;
-
-    }
-
+    private static AppComponent mApplicationComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        instance = this;
-        dataBase = Room.databaseBuilder(this, AppDataBase.class, "database")
-                .build();
-        categoryDao = dataBase.categoryDao();
-        dateNotificationDao = dataBase.dateNotificationDao();
-        expensesDao = dataBase.spendingDao();
-        finPlan = dataBase.finPlanDao();
-
+        mApplicationComponent = DaggerAppComponent.builder().dataBaseModule(new DataBaseModule(this)).build();
     }
 
-    public AppDataBase getDataBase() {
-
-        return dataBase;
+    public static AppComponent getComponent() {
+        return mApplicationComponent;
     }
-
-    public void setDataBase(AppDataBase dataBase) {
-        this.dataBase = dataBase;
-    }
-
-    public CategoryDao getCategoryDao() {
-        return categoryDao;
-    }
-
-    public DateNotificationDao getDateNotificationDao() {
-        return dateNotificationDao;
-    }
-
-    public ExpensesDao getExpensesDao() {
-        return expensesDao;
-    }
-
-    public FinPlanDao getFinPlanDao() {
-        return finPlan;
-    }
-
 
 }

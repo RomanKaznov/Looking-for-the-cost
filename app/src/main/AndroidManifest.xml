@@ -2,10 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.lookingforthecost">
 
-    <uses-permission android:name="android.permission.VIBRATE" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SET_ALARM" />
-
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -14,22 +16,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".OptionActivity" />
-        <activity android:name=".Output" />
-        <activity android:name=".screens.main.MyPlan" />
-        <activity android:name=".screens.main.MainActivity">
+        <activity android:name=".screens.NotificationSettingsActivity" />
+        <activity android:name=".screens.OutputExpensesActivity" />
+        <activity android:name=".screens.MyPlanActivity" />
+        <activity android:name=".screens.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".screens.expenses.create_caterory_and_spending.CreateSpendingActivity" />
-        <activity android:name=".screens.expenses.create_caterory_and_spending.CreateCategoryActivity" />
-        <activity android:name=".screens.expenses.SpendingActivity" />
+        <activity android:name=".screens.expenses.CreateExpensesActivity" />
+        <activity android:name=".screens.expenses.CreateCategoryActivity" />
+        <activity android:name=".screens.expenses.ExpensesActivity" />
 
-        <receiver android:name=".notification.NotificationMessage" />
-        <receiver android:name=".notification.ControlDay" />
+        <receiver android:name=".notification.NotificationReceiver" />
     </application>
 
 </manifest>

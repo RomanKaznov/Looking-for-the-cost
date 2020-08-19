@@ -8,79 +8,60 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".OptionActivity">
+    tools:context=".screens.NotificationSettingsActivity">
 
 
     <androidx.appcompat.widget.Toolbar
-        app:menu="@menu/save_option"
         android:id="@+id/toolbar"
-        style="@style/Toolbar"/>
+        style="@style/Toolbar"
+        app:menu="@menu/save_option" />
 
-    <LinearLayout style="@style/LayoutOption">
 
-        <TextView
-            style="@style/headerOption"
-            android:text="Уведомления"></TextView>
+    <TextView
+        style="@style/Header"
+        android:layout_marginTop="20dp"
+        android:text="Время уведомлений" />
 
-        <LinearLayout
-            style="@style/LayoutOption"
-            android:layout_marginTop="20dp"
-            android:gravity="left"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="Включить уведомления"></TextView>
-
-            <CheckBox
-                android:id="@+id/onNotification"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:checked="true"></CheckBox>
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout style="@style/LayoutOption">
-
-        <TextView
-            style="@style/headerOption"
-            android:text="Время уведомления"></TextView>
+    <LinearLayout
+        style="@style/LayoutHorizontal"
+        android:layout_weight="4">
 
         <LinearLayout
-            style="@style/LayoutOption"
+            style="@style/LayoutHorizontal"
             android:layout_marginTop="20dp"
-            android:gravity="left"
-            android:orientation="horizontal">
+            android:layout_weight="1"
+            android:gravity="top">
 
             <TextView
-                style="@style/styleSpiner"
-                android:text="часов"></TextView>
+                style="@style/middleText"
+                android:layout_marginLeft="20dp"
+                android:text="Часов" />
+
             <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/hour"
-                style="@style/styleSpiner"
-                android:entries="@array/hour"></androidx.appcompat.widget.AppCompatSpinner>
+                style="@style/spinnerTime"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:entries="@array/hour" />
         </LinearLayout>
 
         <LinearLayout
-            style="@style/LayoutOption"
+            style="@style/LayoutHorizontal"
             android:layout_marginTop="20dp"
-            android:gravity="left"
-            android:orientation="horizontal">
+            android:layout_weight="1"
+            android:gravity="top">
+
             <TextView
-                style="@style/styleSpiner"
-                android:text="минут"></TextView>
+                style="@style/middleText"
+                android:text="Минут" />
+
             <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/minute"
-                style="@style/styleSpiner"
-                android:entries="@array/minute"></androidx.appcompat.widget.AppCompatSpinner>
+                style="@style/spinnerTime"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:entries="@array/minute" />
         </LinearLayout>
 
     </LinearLayout>
-
-
-
-
 </LinearLayout>

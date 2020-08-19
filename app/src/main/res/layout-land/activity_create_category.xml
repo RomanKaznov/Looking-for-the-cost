@@ -1,41 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainLayout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".screens.expenses.create_caterory_and_spending.CreateCategoryActivity">
+    tools:context=".screens.expenses.CreateCategoryActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:layout_weight="1"
-        android:layout_height="0dp"
-        app:menu="@menu/menu_create_category"
         android:id="@+id/toolbar"
-        style="@style/Toolbar"/>
-
-
+        style="@style/Toolbar"
+        app:menu="@menu/menu_create_category" />
 
 
     <LinearLayout
-        android:layout_weight="5"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="100dp"
+        android:layout_height="match_parent"
+
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/input"
+            android:id="@+id/nameExpenses"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"></EditText>
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -46,40 +44,31 @@
 
                 <androidx.appcompat.widget.AppCompatCheckBox
                     android:id="@+id/optionalSpending"
-                    android:onClick="onCheckBoxListener"
-                    style="@style/styleCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:background="@color/green"
-                    android:text="@string/nameCheckBox"></androidx.appcompat.widget.AppCompatCheckBox>
+                    android:onClick="onCheckBoxListener"
+                    android:text="@string/nameCheckBox" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="right"
-                >
+                android:gravity="right">
 
                 <androidx.appcompat.widget.AppCompatCheckBox
                     android:id="@+id/optional"
-                    style="@style/styleCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:onClick="onCheckBoxListener"
-                    android:text="@string/nameCheckBox2"></androidx.appcompat.widget.AppCompatCheckBox>
+                    android:text="@string/nameCheckBox2" />
             </LinearLayout>
-
-
         </LinearLayout>
 
 
-        <ScrollView
-            android:scrollbars="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        <LinearLayout
-
-            style="@style/styleLayoutTag"
-            >
+        <LinearLayout android:layout_margin="0dp" style="@style/styleLayoutTag">
 
             <TextView
                 android:id="@+id/tag1"
@@ -149,9 +138,8 @@
                 style="@style/styleTag"
                 android:text="@string/tag11"
                 android:textSize="12sp"></TextView>
-
         </LinearLayout>
-        </ScrollView>
+
 
     </LinearLayout>
 

@@ -8,7 +8,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.lookingforthecost.database.model.FinPlan;
+import com.example.lookingforthecost.database.entity.FinPlan;
 
 import java.util.List;
 
@@ -16,35 +16,12 @@ import java.util.List;
 public interface FinPlanDao {
 
     @Query("SELECT * FROM finplan")
-    LiveData<List<FinPlan>> getFinPlan();
-
-
-    @Query("SELECT * FROM finplan")
-    List<FinPlan> getAll();
-
-
-    @Query( "SELECT * FROM finplan WHERE id IN (:userIds)")
-    List<FinPlan> loadAllByIds(int[] userIds);
-
-    @Query("SELECT * FROM finplan WHERE id = :uid LIMIT 1")
-    FinPlan findByName(int uid);
-
-
+    LiveData<List<FinPlan>> getFinPlanLiveDate();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(FinPlan finPlan);
 
     @Update
     void update(FinPlan finPlan);
-
-    @Delete
-    void delete(FinPlan finPlan);
-
-    @Query("DELETE FROM finplan")
-    public void nukeTable();
-
-
-
-
 
 }

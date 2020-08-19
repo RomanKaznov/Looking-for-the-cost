@@ -2,13 +2,11 @@ package com.example.lookingforthecost.database.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
-import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import androidx.room.Update;
 
-import com.example.lookingforthecost.database.model.Expenses;
+import com.example.lookingforthecost.database.entity.Expenses;
 
 import java.util.List;
 
@@ -16,40 +14,21 @@ import java.util.List;
 public interface ExpensesDao {
 
     @Query("SELECT * FROM Expenses")
-    LiveData<List<Expenses>> getAllLiveData();
+    LiveData<List<Expenses>> getAllExpensesLiveData();
 
-    @Query("SELECT * FROM Expenses")
-    List<Expenses> getAll();
+    @Query("SELECT * FROM Expenses WHERE nameCategoryExpenses IN (:nameCategory)")
+    LiveData<List<Expenses>> findExpensesByNameCategory(String nameCategory);
 
+    @Query("SELECT * FROM expenses WHERE dateCreateExpenses = :date ")
+    List<Expenses> findExpensesByDate(String date);
 
-    @Query( "SELECT * FROM Expenses WHERE id IN (:userIds)")
-    List<Expenses> loadAllByIds(int[] userIds);
-
-    @Query( "SELECT * FROM Expenses WHERE nameCategorySpending IN (:name)")
-    List<Expenses> selectFromName(String name);
-
-
-
+    @Query("SELECT * FROM expenses WHERE nameCategoryExpenses = :name ")
+    LiveData<List<Expenses>> findExpensesByName(String name);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Expenses expenses);
 
-    @Update
-    void update(Expenses expenses);
-
-    @Delete
-    void delete(Expenses expenses);
-
-    @Query("DELETE  FROM Expenses WHERE nameCategorySpending = :str")
-    void delFromName(String str);
-
-
-
-
-
-    @Query("DELETE FROM Expenses ")
-    public void nukeTable();
-
-
+    @Query("DELETE  FROM Expenses WHERE nameCategoryExpenses = :str")
+    void deleteByName(String str);
 
 }

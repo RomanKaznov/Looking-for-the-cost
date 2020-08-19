@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".screens.expenses.ExpensesActivity">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/Toolbar"
+        app:menu="@menu/main_menu" />
+
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        style="@style/LayoutVertical"
+        android:layout_weight="1">
+
+        <androidx.recyclerview.widget.RecyclerView
+
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_gravity="bottom"
+        style="@style/LayoutVertical"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/background"
+        android:gravity="center">
+
+        <TextView
+            android:padding="10dp"
+            android:id="@+id/addCategory"
+            style="@style/styleHeader"
+            android:text="@string/nameVariable5"
+            android:textSize="20sp"></TextView>
+    </LinearLayout>
+</FrameLayout>
+</LinearLayout>

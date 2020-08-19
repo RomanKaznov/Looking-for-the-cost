@@ -3,10 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/green"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".screens.main.MainActivity">
+    tools:context=".screens.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,123 +15,94 @@
         android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
-            app:menu="@menu/main_menu"
             android:id="@+id/toolbar"
-            style="@style/Toolbar"/>
+            style="@style/Toolbar"
+            app:menu="@menu/main_menu" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/Header"
             android:layout_gravity="left"
+            android:layout_marginStart="30dp"
             android:layout_marginLeft="30dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:gravity="bottom"
-            android:text="@string/text"
-            android:textColor="@color/textButton"
-            android:textSize="18sp"></TextView>
+            android:text="@string/mainText"
+          />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            style="@style/LayoutHorizontal"
             android:layout_height="0dp"
-            android:layout_weight="4">
+            android:layout_weight="7">
 
             <LinearLayout
-                style="@style/styleLayoutRight"
-                android:background="@drawable/background2">
+                style="@style/StatusLayout"
+                android:background="@drawable/background_necessary">
 
                 <TextView
-                    style="@style/styleHeader"
+                    style="@style/middleText"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/header2"
+                  ></TextView>
+
+                <LinearLayout style="@style/layoutVariable">
+
+                    <TextView
+                        android:id="@+id/NecassaryBudget"
+                        style="@style/smallText"
+                        android:text="@string/nameVariable3"
+                      ></TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/layoutVariable"
+                    android:layout_marginTop="15dp">
+
+                    <TextView
+                        android:id="@+id/remainsNecassary"
+                        style="@style/smallText"
+                        android:text="@string/nameVariable4"
+                       ></TextView>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                style="@style/StatusLayout"
+                android:background="@drawable/background_optional">
+
+                <TextView
+                    style="@style/middleText"
+                    android:layout_marginTop="20dp"
                     android:text="@string/header1">
 
                 </TextView>
 
 
-                <LinearLayout
-                    style="@style/layoutVariable"
-                    android:layout_marginTop="45dp"
-                    android:gravity="center_horizontal"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/variable"
-                        android:text="@string/nameVariable"></TextView>
+                <LinearLayout style="@style/layoutVariable">
 
                     <TextView
                         android:id="@+id/optionalBudget"
-                        style="@style/value"
-                        android:text="@string/value"></TextView>
+                        style="@style/smallText"
+                        android:text="@string/nameVariable3"></TextView>
 
                 </LinearLayout>
 
-
                 <LinearLayout
                     style="@style/layoutVariable"
-                    android:layout_marginTop="15dp"
-                    android:gravity="center_horizontal"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/variable"
-                        android:text="@string/nameVariable2"></TextView>
-
+                    android:layout_marginTop="15dp">
                     <TextView
                         android:id="@+id/remainsOptional"
-                        style="@style/value"
-                        android:text="@string/value"></TextView>
+                        style="@style/smallText"
+                        android:text="@string/nameVariable4"></TextView>
                 </LinearLayout>
-
-
             </LinearLayout>
 
-            <LinearLayout
-                style="@style/styleLayoutRight"
-                android:background="@drawable/background3">
 
-                <TextView
-                    style="@style/styleHeader"
-                    android:layout_height="wrap_content"
-                    android:text="@string/header2"
-                    android:textColor="@color/textButton2"></TextView>
-
-                <LinearLayout
-
-                    style="@style/layoutVariable"
-                    android:layout_marginTop="45dp"
-                    android:gravity="center_horizontal">
-
-                    <TextView
-                        style="@style/variable"
-                        android:text="@string/nameVariable3"
-                        android:textColor="@color/textButton2"></TextView>
-
-                    <TextView
-                        android:id="@+id/NecassaryBudget"
-                        style="@style/value"
-                        android:text="@string/value"
-                        android:textColor="@color/textButton2"></TextView>
-                </LinearLayout>
-
-                <LinearLayout
-                    style="@style/layoutVariable"
-                    android:layout_marginTop="15dp"
-                    android:gravity="center_horizontal"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/variable"
-                        android:text="@string/nameVariable4"
-
-                        android:textColor="@color/textButton2"></TextView>
-
-                    <TextView
-                        android:id="@+id/remainsNecassary"
-                        style="@style/value"
-                        android:text="@string/value"
-                        android:textColor="@color/textButton2"></TextView>
-                </LinearLayout>
-
-            </LinearLayout>
         </LinearLayout>
+
     </LinearLayout>
 
 
@@ -145,37 +115,33 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="50dp"
-            android:background="@color/green1"></LinearLayout>
+            android:background="@color/colorPrimaryLight" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            style="@style/LayoutVertical"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:background="@drawable/shape"
-
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent">
+            android:background="@drawable/shape">
 
             <Button
-                android:id="@+id/mySpendings"
+                android:id="@+id/mySpending"
                 style="@style/AppTheme2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="70dp"
                 android:layout_marginRight="70dp"
-                android:text="@string/str1"></Button>
+                android:text="Мои расходы" />
 
             <Button
-                android:id="@+id/myFinances"
+                android:id="@+id/myPlan"
                 style="@style/AppTheme2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="70dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="70dp"
-                android:text="Мой план"></Button>
+                android:text="Мой план" />
         </LinearLayout>
-
     </FrameLayout>
+
 </LinearLayout>

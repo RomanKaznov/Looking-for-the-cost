@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Looking for the cost</string>
-    <string name="currency">р.</string>
     <string name="tag1">ЖКХ</string>
     <string name="tag2">АРЕНДА</string>
     <string name="tag3">КРЕДИТЫ</string>
@@ -11,22 +10,20 @@
     <string name="tag8">ПИТАНИЕ</string>
     <string name="tag10">ПОКУПКИ</string>
     <string name="tag11">НАКОПЛЕНИЯ</string>
-    <string name="str1">Мои расходы</string>
-    <string name="text">Ваши расходы</string>
+    <string name="tag9">РАЗВЛЕЧЕНИЯ</string>
+    <string name="str1">Уведомления</string>
+    <string name="mainText">Ваши расходы</string>
     <string name="header2">Необходимые расходы</string>
     <string name="header1">Необязательные расходы</string>
     <string name="nameVariable">Планируемый бюджет:</string>
-    <string name="value">0 руб</string>
     <string name="nameVariable2">Остаток от бюджета:</string>
-    <string name="nameVariable3">Планируемый бюджет:</string>
-    <string name="nameVariable4">Остаток от бюджета:</string>
-    <string name="newCategory">Новая категория</string>
-    <string name="tag9">РАЗВЛЕЧЕНИЯ</string>
+    <string name="nameVariable3">Бюджет:</string>
+    <string name="nameVariable4">Остаток:</string>
+    <string name="nameVariable5">Новая категория</string>
     <string name="nameCheckBox">Необходимые траты</string>
     <string name="nameCheckBox2">Необязательные траты</string>
 
     <string-array name="hour">
-        <item>00</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -50,17 +47,19 @@
         <item>21</item>
         <item>22</item>
         <item>23</item>
+        <item>00</item>
     </string-array>
     <string-array name="minute">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
+        <item>00</item>
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
         <item>10</item>
         <item>11</item>
         <item>12</item>
@@ -111,7 +110,6 @@
         <item>57</item>
         <item>58</item>
         <item>59</item>
-        <item>60</item>
     </string-array>
 
     <string name="new_message_notification_title_template">New message: %1$s</string>
@@ -128,5 +126,12 @@
 
     <string name="action_share">Share</string>
     <string name="action_reply">Reply</string>
+    <string name="mainCurrency">руб.</string>
+    <string name="buttonName">Мои расходы</string>
+    <string name="buttonName2">Мой план</string>
+    <string name="inputText">Наименование траты</string>
+    <string name="inputText2">Сумма</string>
+    <string name="inputTextExpenses">Наименование траты</string>
+    <string name="inputNameExpenses">Сумма</string>
 
 </resources>

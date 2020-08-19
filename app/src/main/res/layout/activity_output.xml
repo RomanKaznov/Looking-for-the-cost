@@ -5,18 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Output">
+    tools:context=".screens.OutputExpensesActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        style="@style/Toolbar"/>
-
+        android:id="@+id/toolbars"
+        style="@style/Toolbar"
+       />
 
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"
-        android:background="@color/green3"
-        android:layout_height="match_parent">
-    </ListView>
+        android:layout_height="match_parent"
+       />
 
 </LinearLayout>

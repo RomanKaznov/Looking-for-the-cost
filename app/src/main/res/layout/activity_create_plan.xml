@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".screens.main.MyPlan">
+    tools:context=".screens.MyPlanActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -15,93 +15,52 @@
 
 
     <LinearLayout
-        style="@style/styleLayoutBudget"
-        android:background="@color/colorNecassary">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="top"
+        android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
+            style="@style/middleText"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:text="Бюджет на обязательные расходы"></TextView>
+            android:text="Бюджет на  расходы" />
 
         <LinearLayout
-            android:gravity="left|center"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            style="@style/LayoutHorizontal"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="70dp"
+            android:layout_weight="15">
 
             <EditText
-                android:id="@+id/nessarySpending"
-                style="@style/styleInputBudget"
-                android:background="@drawable/background2"></EditText>
+                android:id="@+id/necassaryBudget"
+                style="@style/sumValueInput"
+                android:background="@drawable/background_necessary"
+                android:hint="Необходимые"
+                android:padding="10dp" />
+
             <TextView
-                android:layout_marginLeft="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" руб.">
-            </TextView>
+                style="@style/mainCurrency"
+                android:text="@string/mainCurrency" />
         </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        style="@style/styleLayoutBudget"
-        android:background="@color/colorOtional">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:text="Бюджет на обязательные расходы"></TextView>
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:gravity="left|center"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            style="@style/LayoutHorizontal"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="70dp"
+            android:layout_weight="4"
+            android:gravity="top|center">
 
             <EditText
                 android:id="@+id/optionalSpending"
-                style="@style/styleInputBudget"
-                android:background="@drawable/background2"
-               ></EditText>
+                style="@style/sumValueInput"
+                android:background="@drawable/background_optional"
+                android:hint="Опциональные"
+                android:padding="10dp" />
+
             <TextView
-                android:layout_marginLeft="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" руб."></TextView>
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        style="@style/styleLayoutBudget"
-        android:background="@color/green1">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:text="На какое количество дней расчитан план:"></TextView>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:gravity="left|center"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <EditText
-                android:id="@+id/result"
-                style="@style/styleInputBudget"></EditText>
-            <TextView
-                android:layout_marginLeft="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="дни"></TextView>
-
+                style="@style/mainCurrency"
+                android:text="@string/mainCurrency" />
         </LinearLayout>
     </LinearLayout>
-
 </LinearLayout>

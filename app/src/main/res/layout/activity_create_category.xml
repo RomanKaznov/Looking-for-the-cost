@@ -2,32 +2,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".screens.expenses.create_caterory_and_spending.CreateCategoryActivity">
+    tools:context=".screens.expenses.CreateCategoryActivity">
 
     <androidx.appcompat.widget.Toolbar
-        app:menu="@menu/menu_create_category"
         android:id="@+id/toolbar"
-        style="@style/Toolbar"/>
-
-
-
+        style="@style/Toolbar"
+        app:menu="@menu/menu_create_category" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
         android:layout_marginBottom="100dp"
+        android:gravity="top"
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/input"
+            android:id="@+id/nameExpenses"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"></EditText>
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginRight="20dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -43,36 +42,33 @@
 
                 <androidx.appcompat.widget.AppCompatCheckBox
                     android:id="@+id/optionalSpending"
-                    android:onClick="onCheckBoxListener"
-                    style="@style/styleCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:background="@color/green"
-                    android:text="@string/nameCheckBox"></androidx.appcompat.widget.AppCompatCheckBox>
+                    android:onClick="onCheckBoxListener"
+                    android:text="@string/nameCheckBox" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="right"
-               >
+                android:gravity="right">
 
                 <androidx.appcompat.widget.AppCompatCheckBox
                     android:id="@+id/optional"
-                    style="@style/styleCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:onClick="onCheckBoxListener"
-                    android:text="@string/nameCheckBox2"></androidx.appcompat.widget.AppCompatCheckBox>
+                    android:text="@string/nameCheckBox2" />
             </LinearLayout>
-
-
         </LinearLayout>
-
 
 
         <LinearLayout
             style="@style/styleLayoutTag"
-   >
+            android:layout_margin="0dp">
 
             <TextView
                 android:id="@+id/tag1"
@@ -107,18 +103,21 @@
             <TextView
                 android:id="@+id/tag6"
                 style="@style/styleTag"
+                android:layout_weight="0"
                 android:text="@string/tag6"
                 android:textSize="10sp"></TextView>
 
             <TextView
                 android:id="@+id/tag7"
                 style="@style/styleTag"
+                android:layout_weight="0"
                 android:text="@string/tag7"
                 android:textSize="12sp"></TextView>
 
             <TextView
                 android:id="@+id/tag8"
                 style="@style/styleTag"
+                android:layout_weight="0"
                 android:text="@string/tag8"
                 android:textSize="13sp"></TextView>
         </LinearLayout>

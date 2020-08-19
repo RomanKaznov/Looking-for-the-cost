@@ -8,45 +8,29 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.lookingforthecost.database.model.Category;
+import com.example.lookingforthecost.database.entity.Category;
 
 import java.util.List;
 
+import dagger.Module;
+
+@Module
 @Dao
 public interface CategoryDao {
 
     @Query("SELECT * FROM category")
-    LiveData<List<Category>> getAllLiveData();
-
-    @Query("SELECT * FROM category")
-    List<Category > getAll();
-
-
-    @Query("SELECT * FROM category WHERE id IN (:userIds)")
-    List<Category > loadAllByIds(int[] userIds);
-
-
-
-    @Query("SELECT * FROM category WHERE id = :uid LIMIT 1")
-    Category findByName(int uid);
-
+    LiveData<List<Category>> getAllCategoriesLiveData();
 
     @Query("SELECT * FROM category WHERE importance = :importance ")
-    LiveData<List<Category>> findByImportance(int importance);
-
+    LiveData<List<Category>> LiveDataFindByImportance(int importance);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(Category  category);
+    void insert(Category category);
 
     @Update
-    void update(Category  category);
+    void update(Category category);
 
     @Delete
-    void delete(Category  category);
-
-
-    @Query("DELETE FROM category ")
-    public void nukeTable();
-
+    void delete(Category category);
 
 }

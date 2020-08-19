@@ -1,24 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="green1">#9E9E9E</color>
+    <color name="colorPrimary">#C9EEFF</color>
+    <color name="colorPrimaryDark">#808e95</color>
+    <color name="colorPrimaryLight">#b0bec5</color>
+    <color name="colorText">#1c313a</color>
 
+    <color name="colorAccent">#718792</color>
 
-    <color name="colorOtional">#607D8B</color>
-    <color name="colorNecassary">#F9A825</color>
+    <color name="colorSecondary">#455a64</color>
+    <color name="colorSecondaryDark">#1c313a</color>
+    <color name="colorSecondaryLight">#718792</color>
 
+    <color name="colorDiaphanous">#001C313A</color>
+    <color name="colorLight">#F6F7F8</color>
 
-    <color name="colorBackResult">#FFFFFF</color>
-    <color name="green3">#455A64</color>
-
-    <color name="textButton">#212121</color>
-    <color name="textButton2">#FFFFFF</color>
-
-
-    <color name="green">#EDE9DD</color>
-    <color name="colorAccent">#7C0C0C</color>
-
-    <color name="backgroundCategory">#CBD6DAD3</color>
-    <color name="border">#C9A51B1B</color>
-    <color name="colorAccen">#F4F4F4</color>
-    <color name="colorAccen2">#F4F4F4</color>
+    <color name="colorNecessaryCategory">#ffd740</color>
+    <color name="colorOptionalCategory">#cfcfcf</color>
 </resources>
