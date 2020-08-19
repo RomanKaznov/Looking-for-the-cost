@@ -56,3 +56,10 @@ ModelFactory – фабрика для получения возможности
 <hr/>
 <li>Глобальный класс App, где происходит создание компонента </li>
 <li>Глобальный класс DataToday, который позволяет получать сегодняшнюю дату в определенном формате</li>
+</ul>
+
+![alt text](screenshots/1.jpg)
+![alt text](screenshots/2.jpg)
+![alt text](screenshots/3.jpg)
+![alt text](screenshots/4.jpg)
+![alt text](screenshots/5.jpg)
